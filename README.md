@@ -94,8 +94,11 @@ Refer [1] for the list of commits over the past 3 months. 
 * Learned how to process yaml in golang and how to test it. I got stuck with understanding how yaml works as tabs are not overlooked as spaces.
 * Cortex uses inverted index, so if a query has a label, cortex would index it like<query_name>:<label_name>(go_gc_duration_seconds:instance). So if the prom query is like go_gc_duration_seconds{instance="localhost:9090"}, the value of labels inside curly braces is called as matchers in prometheus.
 * Learned about testing metrics. With help from my mentor, I learned observability in tests which we used to test the metric values that change before and after indexing. The observations were as follows
+
+The metric cortex `cortex_chunk_store_index_lookups` is a Prometheus' Histogram registered in cortex and measures the number of index lookups for each query.
+
 #### Number of query lookups before excluding labels
-    cortex_chunk_store_index_lookups_per_query_bucket{le="1"} 84
+   	cortex_chunk_store_index_lookups_per_query_bucket{le="1"} 84
 	cortex_chunk_store_index_lookups_per_query_bucket{le="2"} 120
 	cortex_chunk_store_index_lookups_per_query_bucket{le="4"} 120
 	cortex_chunk_store_index_lookups_per_query_bucket{le="8"} 120
@@ -107,7 +110,7 @@ Refer [1] for the list of commits over the past 3 months. 
 
 #### Number of query lookups after excluding labels:
 
-    cortex_chunk_store_index_lookups_per_query_bucket{le="1"} 120
+    	cortex_chunk_store_index_lookups_per_query_bucket{le="1"} 120
 	cortex_chunk_store_index_lookups_per_query_bucket{le="2"} 120
 	cortex_chunk_store_index_lookups_per_query_bucket{le="4"} 120
 	cortex_chunk_store_index_lookups_per_query_bucket{le="8"} 120
@@ -117,8 +120,11 @@ Refer [1] for the list of commits over the past 3 months. 
 	cortex_chunk_store_index_lookups_per_query_count 120
 
 * Similarly, after implementing the Write Path, the number of index entries per chunk reduced as follows:
+
+The metric cortex `cortex_chunk_store_index_entries_per_chunk` is a Prometheus' Histogram registered in cortex and measures the number of index entries per chunk.
+
  #### Number of index entries before excluding labels:
-        ` 
+        
         cortex_chunk_store_index_entries_per_chunk_bucket{le="1"} 4
         cortex_chunk_store_index_entries_per_chunk_bucket{le="2"} 20
         cortex_chunk_store_index_entries_per_chunk_bucket{le="4"} 60
@@ -130,7 +136,7 @@ Refer [1] for the list of commits over the past 3 months. 
       
          
 #### Number of index entries before excluding labels:
-        `
+        
 
             cortex_chunk_store_index_entries_per_chunk_bucket{le="1"} 4
             cortex_chunk_store_index_entries_per_chunk_bucket{le="2"} 20
@@ -140,7 +146,7 @@ Refer [1] for the list of commits over the past 3 months. 
             cortex_chunk_store_index_entries_per_chunk_bucket{le="+Inf"} 72
             cortex_chunk_store_index_entries_per_chunk_sum 232
             cortex_chunk_store_index_entries_per_chunk_count 72
-        `
+       
 
 ### Note
 
