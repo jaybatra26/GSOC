@@ -93,7 +93,10 @@ Refer [1] for the list of commits over the past 3 months. 
 * Learned how to write a design doc.(https://github.com/cortexproject/cortex/issues/2910)
 * Learned how to process yaml in golang and how to test it. I got stuck with understanding how yaml works as tabs are not overlooked as spaces.
 * Cortex uses inverted index, so if a query has a label, cortex would index it like<query_name>:<label_name>(go_gc_duration_seconds:instance). So if the prom query is like go_gc_duration_seconds{instance="localhost:9090"}, the value of labels inside curly braces is called as matchers in prometheus.
-* Learned about testing metrics. With help from my mentor, I learned observability in tests which we used to test the metric values that change before and after indexing. The observations were as follows
+* Learned about testing metrics. With help from my mentor, I learned observability which basically means observing metrics of your service, it could be for example how many `HTTP` requests end up in `500`. Similarly, in cortex there are certain metrics that are recorded in prometheus, in our case, we were especially interested in how many index lookups takes place for labels while querying and how many indices per chunk are being created while writing . Prometheus has histograms where we could classify the number of observations into dedicated buckets. For example in the following how many queries end up looking for only 1 index from the chunk store, the answer is 84. `le` represents `less than`. 
+
+
+The numbers in the following illustrations differ before and after excluding labels.
 
 The metric cortex `cortex_chunk_store_index_lookups` is a Prometheus' Histogram registered in cortex and measures the number of index lookups for each query.
 
