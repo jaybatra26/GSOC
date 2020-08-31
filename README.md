@@ -80,6 +80,8 @@ Refer [1] for the list of commits over the past 3 months. 
 
 
 ### Overall Learnings
+* I learned the concept of standup. My mentor introduced me to a tool called as `standuply`. The idea is to familiarize with preoffesional development environment.
+  This helped me organize my goals and track the progress as time passed.
 * Setup of Cortex with DyanamoDB. I learned how to write docker-compose files and run a setup consisting of Prometheus, Cortex and DynamoDb.
 * Deep understanding of how flushing of chunks takes place.
 * Understanding of role of metrics.
